@@ -1,0 +1,82 @@
+<h2>Show Book</h2>
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>ISBN:</strong>
+  <%= @book.isbn %>
+</p>
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+<% if @book.suggestion_status != "Suggested" %>
+    <p>
+      <strong>Status:</strong>
+      <%= @book.status %>
+    </p>
+
+<% end %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @book.description %>
+</p>
+<% if @book.suggestion_status != "Suggested" %>
+<%if is_admin_user? %>
+    <% if @book.status == "Available" %>
+        <%= form_tag "/books/checkout/#{@book.id}", method: :get  do %>
+            <%= text_field_tag "user_name", placeholder_selector="Enter member's username here" %>
+            <%= hidden_field_tag :book_id, @book.id%>
+            <%= submit_tag "Checkout on behalf" %>
+        <% end %>
+    <% end %>
+<%else %>
+    <% if @book.status == "Available" %>
+        <%# if @book.suggestion_status != "Suggested" %>
+            <%= button_to "Checkout", action:'checkout', id:@book.id, method: :get %><br>
+        <%#end %>
+    <%end%>
+<%end%>
+
+
+<% if is_admin_user? %>
+    <% if @book.status == "Checked out" %>
+        <%= form_tag "/books/return/#{@book.id}", method: :get  do %>
+            <%= text_field_tag "user_name", placeholder_selector="Enter member's username here" %>
+            <%= hidden_field_tag :book_id, @book.id%>
+            <%= submit_tag "Return on behalf" %>
+        <% end %>
+    <% else %>
+        <%= button_to 'Delete Book' , book_path(@book), method: :delete, data: {confirm: 'Are you sure?'} %>
+    <% end %>
+<%else%>
+    <% if @book.status == "Checked out" %>
+        <%= button_to "Return Book", action:'return', id:@book.id , method: :get%><br>
+        <%#else%>
+        <%= form_tag "/books/subscribe/#{@book.id}", method: :get  do %>
+            <%= hidden_field_tag :isbn, @book.isbn%>
+            <%= submit_tag "Subscribe" %>
+        <% end %>
+    <%end%>
+<%end %>
+<br>
+
+<table>
+  <tr><td>
+    <% if is_admin_user? %>
+        <%= link_to"<button>Edit Book</button>".html_safe, controller: 'books', action: 'edit'%></td>
+        <td><%= form_tag "/books/book_history/#{@book.id}", method: :get  do %></td>
+              <td><%= hidden_field_tag :book_id, @book.id%>
+                <%= submit_tag "Book History" %>
+          <%end%>
+    <% end %>
+<%#= link_to"<button>Show All Books</button>".html_safe, controller: 'books', action: 'index' %></td>
+    </tr>
+</table>
+<%end%>
+<br><br>
+<%= link_to "<button>Back</button>".html_safe, books_path%>

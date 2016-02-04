@@ -1,0 +1,56 @@
+<h1>Editing book</h1>
+
+<%= form_for :books, url: book_path(@books), method: :patch do |f| %>
+
+    <% if @books.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@books.errors.count, 'error') %> prohibited
+            this book from being saved:
+          </h2>
+          <ul>
+            <% @books.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :author %><br>
+      <%= f.text_field :author %>
+    </p>
+
+    <p>
+      <%= f.label :isbn %><br>
+      <%= f.text_area :isbn %>
+    </p>
+    <% if @books.suggestion_status != "Suggested" %>
+    <p>
+      <%= f.label :status%><br>
+      <%= f.text_field :status,:readonly => true %>
+    </p>
+<%end%>
+    <p>
+      <%= f.label :title %><br>
+      <%= f.text_area :title %>
+    </p>
+
+    <p>
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </p>
+<table>
+  <tr>
+    <td>
+      <p>
+        <%= f.submit %>
+      </p>
+    </td>
+    <td>
+      <% end %>
+
+      <%= link_to "<button>Back</button>".html_safe, books_path %>
+    </td>
+  </tr>
+</table>

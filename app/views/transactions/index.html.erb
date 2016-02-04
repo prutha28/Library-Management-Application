@@ -1,0 +1,20 @@
+<h1>Transactions</h1>
+
+<table>
+  <tr>
+    <th>ISBN</th>
+    <th>User ID</th>
+    <th>Transaction Time</th>
+    <th>Transaction Type</th>
+  </tr>
+
+  <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.isbn %></td>
+        <td><%= transaction.user%></td>
+        <td><%= transaction.timestamps %></td>
+        <td><%= transaction.transaction_type %></td>
+      </tr>
+  <% end %>
+  <%= link_to 'Back', controller: 'books', action: 'index' %>
+</table>

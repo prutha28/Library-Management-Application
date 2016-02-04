@@ -1,0 +1,47 @@
+<p>
+  <strong>first_name</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>last_name</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>email</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>username</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>User Type</strong>
+  <%= @user.user_type %>
+</p>
+<table>
+  <tr>
+    <td>
+      <%= link_to "<button>Back</button>".html_safe, controller: 'users', action: 'index' %></td>
+    <td>
+      <%= link_to "<button>Edit</button>".html_safe, controller: 'users', action: 'edit' %>
+    </td>
+    <td>
+      <%if @user.username =='admin'%>
+          <%#= button_to 'Delete User' , user_path(@user), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%else%>
+          <%= button_to 'Delete User' , user_path(@user), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%end%>
+    </td>
+    <td>
+      <%= form_tag "/users/users_history/#{@user.id}", method: :get  do %>
+          <%= hidden_field_tag :user_id, @user.id%>
+          <%= submit_tag "My Transaction History" %>
+      <% end %>
+    </td>
+
+  </tr>
+</table>

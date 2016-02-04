@@ -1,0 +1,40 @@
+<li style="float: right"><%= link_to("Logout",:controller => 'access', :action => 'logout') %></li>
+<h1>Listing All Books</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>ISBN</th>
+    <th>Author</th>
+    <th>Status</th>
+    <th>Description</th>
+  </tr>
+
+
+  <% @books.each do |book| %>
+      <tr>
+        <td><%=book.title %></td>
+        <td><%=book.isbn %></td>
+        <td><%=book.author %></td>
+        <td><%=book.status %></td>
+        <td><%=book.description %></td>
+        <td><%= link_to 'Show', controller: 'books', action: 'show', id:book.id %></td>
+        <td><%= link_to 'Edit',edit_book_path(book)%></td>
+      </tr>
+  <%end%>
+  <%= form_tag(books_path, method: "get") do %>
+      <%= label_tag(:q, "Search by Title :") %>
+      <%= text_field_tag :title, params[:title] %><br>
+
+      <%= label_tag(:q, "Search by Author :") %>
+      <%= text_field_tag :author, params[:author] %><br>
+
+      <%= label_tag(:q, "Search by ISBN :") %>
+      <%= text_field_tag :isbn, params[:isbn] %><br>
+
+      <%= submit_tag("Search") %>
+  <% end %>
+
+</table>
+<%= link_to 'Add Book', action: 'new'%><br>
+<%#= link_to 'Home Page', controller: 'access', action: 'index' %><br>

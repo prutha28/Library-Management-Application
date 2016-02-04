@@ -1,0 +1,69 @@
+<h3>Search Books By:</h3>
+<%= form_tag(books_path, method: "get") do %>
+    <table>
+      <tr>
+        <td>
+          <%= label_tag(:q, "Title :") %></td><td>
+        <%= text_field_tag :title, params[:title] %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Author :") %></td><td>
+        <%= text_field_tag :author, params[:author] %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "ISBN :") %></td><td>
+        <%= text_field_tag :isbn, params[:isbn] %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Available books:") %></td><td>
+        <%= radio_button_tag(:status, "Available") %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Checked-out books:") %></td><td>
+        <%= radio_button_tag(:status, "Checked out") %><br>
+      </td>
+      </tr>
+    </table>
+    <br>
+    <%= submit_tag("Search") %>
+<% end %>
+
+<h3>Book Details:</h3>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>ISBN</th>
+    <th>Author</th>
+    <th>Status</th>
+    <th>Description</th>
+  </tr>
+
+  <% @books.each do |book| %>
+      <tr>
+        <td><%=book.title %></td>
+        <td><%=book.isbn %></td>
+        <td><%=book.author %></td>
+        <td><%=book.status %></td>
+        <td><%=book.description %></td>
+        <td><%= link_to 'Show', controller: 'books', action: 'show', id:book.id %></td>
+        <% if is_admin_user? %>
+            <td><%= link_to 'Edit',edit_book_path(book)%></td>
+            <td><%#= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+  <%end%>
+</table>
+<br>
+
+<% if is_admin_user? %>
+    <table><tr><td>
+    <%= link_to"<button>Add book</button>".html_safe, action: 'new'%><br></td><td>
+    <%= link_to"<button>View suggestions</button>".html_safe, action: 'view_suggestions'%><br></td></tr></table>
+<%else%>
+    <%= link_to"<button>Suggest New Book</button>".html_safe, action: 'suggest_book' %><br>
+<% end %>
+<%#= link_to 'Home Page', controller: 'access', action: 'index' %><br>

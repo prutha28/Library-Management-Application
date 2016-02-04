@@ -1,0 +1,12 @@
+<h2>Return Book</h2>
+<p>
+  <strong>
+    <%=@book.title%>
+  </strong>
+  <% if @book.status == "Available" %>
+    has been returned successfully!
+<% else %>
+    has been issued by different user, can't return it.
+      <% end %>
+</p>
+<%= link_to 'Back', book_path%>

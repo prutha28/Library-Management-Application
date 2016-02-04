@@ -1,0 +1,16 @@
+<h2>Book  Suggestion</h2>
+
+<p>
+  <strong>
+    <%=@books.title%>
+  </strong>
+
+
+  <% if @books.suggestion_status == "Approved" %>
+      has been Approved!
+  <% else %>
+      has been rejected
+  <% end %>
+
+</p>
+<%= link_to "<button>Back</button>".html_safe, action: 'view_suggestions' %>

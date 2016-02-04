@@ -1,0 +1,66 @@
+<h3>Search Users By:</h3>
+
+<%= form_tag(users_path, method: "get") do %>
+    <table>
+      <tr>
+        <td>
+          <%= label_tag(:q, "Search by First Name :") %></td><td>
+        <%= text_field_tag :first_name, params[:first_name] %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Search by Last Name :") %></td><td>
+        <%= text_field_tag :Last_name, params[:last_name] %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Search by Email id :") %></td><td>
+        <%= text_field_tag :email, params[:email] %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Search by Username :") %></td><td>
+        <%= text_field_tag :username, params[:username] %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Show all member users") %></td><td>
+        <%= radio_button_tag(:user_type, "member") %><br>
+      </td>
+      </tr>
+      <tr><td>
+        <%= label_tag(:q, "Show all admin users") %></td><td>
+        <%= radio_button_tag(:user_type, "admin") %><br>
+      </td>
+      </tr>
+    </table>
+    <%= submit_tag("Search") %>
+<% end %>
+
+<h3>User Details:</h3>
+<table>
+  <tr>
+    <!--th>User ID</th-->
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email Id</th>
+    <th>User Name</th>
+    <th>User Type</th>
+  </tr>
+
+  <% @user.each do |user| %>
+      <tr>
+        <!--td><%#= user.id %></td-->
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.username %></td>
+        <td><%= user.user_type %></td>
+        <td><%= link_to 'Show', controller: 'users', action: 'show', id:user.id %></td>
+        <td><%= link_to 'Edit',edit_user_path(user)%></td>
+      </tr>
+  <% end %>
+</table>
+<br>
+<%= link_to "<button>Add admin</button>".html_safe, controller: 'users', action: 'new' %><br>
+<%#= link_to 'Home Page', controller: 'access', action: 'index' %>

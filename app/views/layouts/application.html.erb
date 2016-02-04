@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Libapp</title>
+  <%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'jquery_ujs' %>
+  <%#= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+  <table  id ='top_layout' style="width:100%">
+    <tr>
+      <td>
+
+        <% if logged_in? %>
+            <ul style="float: left"><%= link_to 'Home Page', controller: 'access', action: 'index' %></ul>
+            <ul style="float: right"><%= link_to("Logout",:controller => 'access', :action => 'logout') %></ul>
+            <ul style="float: right"><%= link_to("User : #{current_user.username}", :controller => 'users',:action => 'show', :id =>current_user.id  )%>
+
+            </ul>
+            <!--<li style="float: right"> <%#= link_to("Edit Profile", :controller => 'users',:action => 'edit_profile', :id =>current_user.id)%></li><br>-->
+        <% end %>
+      </td>
+      </tr>
+    <tr>
+      <td>
+      <h1 align="center">Welcome To  Library</h1>
+      </td>
+      <td>
+      </td>
+    </tr>
+    </table>
+
+<%= yield %>
+</body>
+</html>

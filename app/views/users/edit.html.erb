@@ -1,0 +1,54 @@
+<h1>Editing user</h1>
+<%= form_for :user, url: user_path(@user), method: :patch do |f| %>
+
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@user.errors.count, "error") %> prohibited
+            this User from being saved:
+          </h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :firstName %><br>
+      <%= f.text_field :first_name %>
+    </p>
+
+    <p>
+      <%= f.label :lastName %><br>
+      <%= f.text_field :last_name %>
+    </p>
+
+    <p>
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </p>
+
+    <!--<p>
+      <%#= f.label :username %><br>
+      <%#= f.text_field :username, :readonly => true%>
+    </p>-->
+    <p>
+      <%= f.label :usertype %><br>
+      <%= f.text_field :user_type, value:@user.user_type , :readonly => true%>
+    </p>
+<table>
+  <tr>
+    <td>
+    <p>
+      <%= f.submit %>
+    </p>
+    </td>
+<td>
+<% end %>
+
+<%= link_to "<button>Back</button>".html_safe, controller: 'users', action: 'index' %>
+</td>
+</tr>
+</table>

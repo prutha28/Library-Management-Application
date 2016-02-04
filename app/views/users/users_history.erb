@@ -1,0 +1,16 @@
+<h3>User History for user id : <%=@user.username%></h3>
+<table>
+  <tr>
+    <th>Book Title</th>
+    <th>Transaction Time</th>
+    <th>Transaction Type</th>
+  </tr>
+  <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction_book(transaction.book_id).title %></td>
+        <td><%= transaction.transaction_type %></td>
+        <td><%= transaction.order_date %></td>
+      </tr>
+  <% end %>
+  <%= link_to 'Back', controller: 'access', action: 'index' %>
+</table>

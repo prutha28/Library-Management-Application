@@ -1,0 +1,16 @@
+<h3>Book History for ISBN : <%=@book.isbn%>, title : <%=@book.title%></h3>
+<table>
+  <tr>
+    <th>User ID</th>
+    <th>Transaction Type</th>
+    <th>Transaction Time</th>
+  </tr>
+  <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction_user(transaction.user_id).username %></td>
+        <td><%= transaction.transaction_type %></td>
+        <td><%= transaction.order_date %></td>
+      </tr>
+  <% end %>
+  <%= link_to 'Back', controller: 'books', action: 'show' %>
+</table>

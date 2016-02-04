@@ -1,0 +1,35 @@
+<h3>Suggested Book Details:</h3>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>ISBN</th>
+    <th>Author</th>
+    <th>Suggestion status</th>
+    <th>Description</th>
+  </tr>
+
+  <% @suggested_books.each do |suggested_books| %>
+      <tr>
+        <td><%=suggested_books.title %></td>
+        <td><%=suggested_books.isbn %></td>
+        <td><%=suggested_books.author %></td>
+        <td><%=suggested_books.suggestion_status %></td>
+        <td><%=suggested_books.description %></td>
+        <%id = suggested_books.id %>
+        <td><%= form_tag "/books/suggestion_result/#{id}", method: :get  do %></td>
+              <td><%= hidden_field_tag :s_status, 'Approved'%>
+                <%#= hidden_field_tag :book_id, @book.id%>
+                <%= submit_tag "Approve" %>
+          <% end %>
+          <td><%= form_tag "/books/suggestion_result/#{id}", method: :get  do %></td>
+                <td><%= hidden_field_tag :s_status, 'Rejected'%>
+                  <%= submit_tag "Reject" %>
+            <% end %>
+            <% if is_admin_user? %>
+                <td><%= link_to "<button>Edit</button>".html_safe,edit_book_path(suggested_books)%></td>
+                <%#= link_to "<button>Back</button>".html_safe, action: 'index' %><br>
+            <% end %>
+            </tr>
+  <%end%>
+</table>
+<%= link_to "<button>Back</button>".html_safe, controller:'access', action: 'index' %><br>

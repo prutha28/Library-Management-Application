@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails libapp: development" uuid="7bf2cda3-1898-421d-809d-f20fc8a07257">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails libapp: test" uuid="253dde8d-efa6-447f-b745-7d311d21bbed">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails libapp: production" uuid="573ca467-a1ec-4b05-8b5e-18c57c498e8f">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails libapp: development" uuid="982f3cb6-7029-437b-a497-ac56ca64fb61">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails libapp: test" uuid="8a444b80-7248-4ec8-8c96-5c834d1cee03">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails libapp: production" uuid="7a2cf6a7-2591-42f4-bbac-9fc7debfc591">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

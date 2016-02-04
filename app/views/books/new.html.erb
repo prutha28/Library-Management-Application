@@ -1,0 +1,48 @@
+<h1>New Book</h1>
+
+<%= form_for :books, url: books_path do |f| %>
+
+    <% if @books.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@books.errors.count, "error") %> prohibited
+            this book from being saved:
+          </h2>
+          <ul>
+            <% @books.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :author %><br>
+      <%= f.text_field :author %>
+    </p>
+
+    <p>
+      <%= f.label :isbn %><br>
+      <%= f.text_area :isbn %>
+    </p>
+
+    <p>
+      <%= f.label :status %><br>
+      <%= f.label :Available %>
+    </p>
+
+    <p>
+      <%= f.label :title %><br>
+      <%= f.text_area :title %>
+    </p>
+
+    <p>
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+    <%= link_to 'Back', books_path%><br><br>
+<% end %>

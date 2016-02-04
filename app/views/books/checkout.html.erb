@@ -1,0 +1,17 @@
+<h2>Checkout Book</h2>
+
+<p>
+  <strong>
+    <%=@book.title%>
+  </strong>
+
+
+  <% if @book.status == "Checked out" %>
+      has been checked out successfully!
+  <% else %>
+      can't be checked out for given user
+  <% end %>
+
+
+</p>
+<%= link_to 'Back', book_path%>
